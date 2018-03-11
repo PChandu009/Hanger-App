@@ -1,0 +1,351 @@
+<div id="newMovie" class="jumbotron bg-grey">
+<form class="form-horizontal" method="POST" id="newMovieForm">
+  <fieldset>
+    <legend><i class="fa fa-film" aria-hidden="true"></i> New Movie</legend>
+    <div class="form-group">
+      <label for="inputMovieTitle" class="col-lg-2 control-label">Movie Title</label>
+      <div class="col-lg-10">
+        <input type="text" class="form-control" id="inputMovieTitle" value="Beauty and The Beast" name="inputMovieTitle" placeholder="Movie Title" required>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputMovieDesc" class="col-lg-2 control-label">Description</label>
+      <div class="col-lg-10">
+        <textarea class="form-control" rows="3" id="inputMovieDesc"  maxlength="300" minlength="10" name="inputMovieDesc" placeholder="about movie" required>Belle (Emma Watson), a bright, beautiful and independent young woman, is taken prisoner by a beast (Dan Stevens) in its castle. Despite her fears, she befriends the castle's enchanted staff and learns to look beyond the beast's hideous exterior</textarea>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputMovieDuration" class="col-lg-2 control-label">Duration</label>
+      <div class="col-md-1">
+            <input type="number" class="form-control block" id="inputMovieDurationHours" name="inputMovieDurationHours" placeholder="2" required>
+            <label for="inputMovieDurationHours">Hours</label>
+      </div>
+      <div class="col-md-1">
+            <input type="number" class="form-control block" id="inputMovieDurationMinutes" name="inputMovieDurationMinutes" placeholder="30" required>
+            <label for="inputMovieDurationMinutes">Minutes</label>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputMovieLanguage" class="col-lg-2 control-label">Langauge</label>
+      <div class="col-lg-2">
+        <select id="inputMovieLanguage" name="inputMovieLanguage" class="selectpicker" required >
+            <option value="English">English</option>
+            <option value="Telugu">Telugu</option>
+            <option value="Hindi">Hindi</option>
+            <option value="Tamil">Tamil</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputMovieReleaseDate" class="col-lg-2 control-label">Release Date</label>
+      <div class="col-lg-3">
+        <input type="date" class="form-control " id="inputMovieReleaseDate" name="inputMovieReleaseDate" placeholder="MM/DD/YYYY" required>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputMovieGenre" class="col-lg-2 control-label">Genre</label>
+      <div class="col-lg-2">
+        <select multiple="" id="inputMovieGenre" name="inputMovieGenre" class="selectpicker" required>
+            <option>Action</option>
+            <option>Adventure</option>
+            <option>Animation</option>
+            <option>Biography</option>
+            <option>Comedy</option>
+            <option>Crime</option>
+            <option>Drama</option>
+            <option>Family</option>
+            <option>Fantasy</option>
+            <option>History</option>
+            <option>Horror</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputMovieCertificate" class="col-lg-2 control-label">Certificate</label>
+      <div class="col-lg-2">
+        <select id="inputMovieCertificate" name="inputMovieCertificate" class="selectpicker" required >
+            <option value="UA">U/A</option>
+            <option value="U" v>U</option>
+            <option value="A">A</option>
+            <option value="S">S</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-lg-2 control-label">Publish To Public</label>
+      <div class="col-lg-10">
+        <div class="radio">
+          <label>
+            <input type="radio" name="optionsRadiosPubToPblc" id="optionsRadiosYes" value="true">
+            Yes &nbsp;
+          </label>
+          <label>
+            <input type="radio" name="optionsRadiosPubToPblc" id="optionsRadiosNo" value="false" checked>
+            No
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-lg-2 control-label">Enable Booking</label>
+      <div class="col-lg-10">
+        <div class="radio">
+          <label>
+            <input type="radio" name="optionsRadiosEnBkng" id="optionsRadiosBkngYes" value="true">
+            Yes &nbsp;
+          </label>
+          <label>
+            <input type="radio" name="optionsRadiosEnBkng" id="optionsRadiosBkngNo" value="false" checked>
+            No
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-lg-2 control-label">Cover Picture</label>
+      <div class="col-lg-5">
+        <!-- <img src="" id="coverPic" /> -->
+        <input type="hidden" id="cvrPic" name="cvrPic" value="" />
+        <div id="coverPic"></div>
+        <div class="progress" id="progressCvrPic">
+             <div class="progress-bar" role="progressbar" id="prgCvrPic" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+    60%
+  </div>
+        </div>
+        <div method="POST" id="imageuploadform" enctype="multipart/form-data" action="/admin/upload">
+            <input type="file" id="upldCvrImageFile"  class="btn btn-warning" name="foo"><br/>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="col-lg-2 control-label">Display Picture</label>
+      <div class="col-lg-5">
+        <input type="hidden" id="dspPic" name="dspPic" value="" />
+        <div id="displayPic"></div>
+        <div class="progress" id="progressDispPic">
+             <div class="progress-bar" role="progressbar" id="prgDispPic" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+    60%
+  </div>
+        </div>
+        <div method="POST" id="imageuploadform" enctype="multipart/form-data" action="/admin/upload">
+            <input type="file" id="upldDispImageFile"  class="btn btn-warning" name="foo" ><br/>
+        </div>
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <label for="inputMovieTrailer" class="col-lg-2 control-label">Trailer Link</label>
+      <div class="col-lg-10">
+        <input type="text" class="form-control" id="inputMovieTrailer" name="inputMovieTrailer" placeholder="youtube.com/v1/xcv2423" required>
+      </div>
+    </div>
+
+    <div class="jumbotron" id="addShowsContainer">
+      <h2><i class="fa fa-film" aria-hidden="true"></i> Add Shows</h2><div class="dash-line"></div>
+      <div class="addShowBlock">
+      <div class="row showblock">
+        <div class="col-lg-3">
+          <label class="control-label"><strong>Select Screen</strong></label>
+          <select id="inputMovieCertificate" class="form-control" name="showScreen" required>
+          <% for(let i=0; i<screens.length; i++ ) { %>
+              <option value="<%= screens[i]._id %>"><%= screens[i].name %></option>
+          <% } %>
+          </select>
+        </div>
+        <div class="col-lg-3">
+          <label class="control-label"><strong>Select Date (MM/DD/YYYY)</strong></label>
+            <input type="date" class="form-control block" placeholder="MM/DD/YYYY" value="2017-04-28" class="inputMovieShowDate" name="showdate" required>
+       </div>
+        <div class="col-lg-3">
+          <label class="control-label"><strong>Select Time (HH:MM (AM/PM))</strong></label>
+            <input type="time" class="form-control block" placeholder="HH:MM" value="14:00" class="inputMovieShowTime" name="showtime" required>
+        </div>
+        <div class="col-lg-3">
+          <label class="control-label"><strong>Enter Price ($/ticket)</strong></label>
+            <div class="form-group">
+            <label class="sr-only" for="inputMovieShowPrice">Amount (in dollars)</label>
+            <div class="input-group">
+              <div class="input-group-addon">$</div>
+              <input type="text" class="form-control" id="inputMovieShowPrice"  value="10.00" placeholder="Amount">
+              <!-- <div class="input-group-addon">.00</div> -->
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      
+      </div>
+      <br/>
+      <p><a class="btn btn-primary btn-lg" id="addShow" href="#" role="button"><i class="fa fa-plus" aria-hidden="true"></i> Add Show</a></p>
+    </div>
+  </fieldset>
+  <p><button type="submit" class="btn btn-primary btn-lg" id="addMovie" role="button"><i class='fa fa-plus' aria-hidden='true'></i> Add Show</button></p>
+</form>
+</div>
+<script>
+$("#addShow").click(function(evt){
+  evt.preventDefault();
+  $(".addShowBlock").append("<div class='row showblock'>"+$(".showblock")[0].innerHTML+"</div>");
+  //$(".addShowBlock").append('<div class="row showblock"><div class="col-lg-3"><label class="control-label"><strong>Select Screen</strong></label><select id="inputMovieCertificate" class="form-control" name="showScreen"><option value="Screen1">Screen1</option><option value="Screen2">Screen2</option><option value="Screen3">Screen3</option><option value="Screen4">Screen4</option><option value="Screen5">Screen5</option><option value="Screen6">Screen6</option></select></div><div class="col-lg-3"><label class="control-label"><strong>Select Date (MM/DD/YYYY)</strong></label><input type="date" class="form-control block" placeholder="MM/DD/YYYY" class="inputMovieShowDate" name="showdate" ></div><div class="col-lg-3"><label class="control-label"><strong>Select Time (HH:MM (AM/PM))</strong></label><input type="time" class="form-control block" placeholder="HH:MM" class="inputMovieShowTime" name="showtime" ></div>');
+})
+
+$("#progressCvrPic")[0].style.display = "none";
+$("#progressCvrPic")[0].style.width = "200px";
+$("#progressDispPic")[0].style.display = "none";
+$("#progressDispPic")[0].style.width = "200px";
+
+$('#upldCvrImageFile').change(function (e) {
+
+    e.preventDefault();
+    var formData = new FormData();
+    formData.append('foo', $("#upldCvrImageFile")[0].files[0]);
+
+    $("#progressCvrPic")[0].style.display = "block";
+    $.ajax({
+        type:'POST',
+        url: '/admin/upload',
+        data:formData,
+        xhr: function() {
+                var myXhr = $.ajaxSettings.xhr();
+                if(myXhr.upload){
+                    myXhr.upload.addEventListener('progress',progress, false);
+                }
+                return myXhr;
+        },
+        cache:false,
+        contentType: false,
+        processData: false,
+
+        success:function(data){
+            console.log(data);
+          if(data.success){
+              $("#coverPic").css("width","300px");
+              $("#coverPic").css("height","84px");
+              $("#coverPic").css("background", "url("+data.data+") no-repeat center center");
+              $("#cvrPic").val(data.data);
+              $("#coverPic").css("background-size", "cover");
+              
+          }
+
+        },
+        error: function(data){
+            console.log(data);
+        }
+    });
+
+});
+$('#upldDispImageFile').change(function (e) {
+
+    e.preventDefault();
+    var formData = new FormData();
+    formData.append('foo', $("#upldDispImageFile")[0].files[0]);
+
+    $("#progressDispPic")[0].style.display = "block";
+    $.ajax({
+        type:'POST',
+        url: '/admin/upload',
+        data:formData,
+        xhr: function() {
+                var myXhr = $.ajaxSettings.xhr();
+                if(myXhr.upload){
+                    myXhr.upload.addEventListener('progress',progressDisp, false);
+                }
+                return myXhr;
+        },
+        cache:false,
+        contentType: false,
+        processData: false,
+
+        success:function(data){
+            console.log(data);
+          if(data.success){
+              $("#displayPic").css("width","116px");
+              $("#displayPic").css("height","174.5px");
+              $("#displayPic").css("background", "url("+data.data+") no-repeat center center");
+              $("#dspPic").val(data.data);
+              $("#displayPic").css("background-size", "cover");
+              
+          }
+
+        },
+        error: function(data){
+            console.log(data);
+        }
+    });
+
+});
+
+function progressDisp(e){
+
+    if(e.lengthComputable){
+        var max = e.total;
+        var current = e.loaded;
+
+        var Percentage = (current * 100)/max;
+        $("#prgDispPic")[0].style.width = Percentage+"%";
+        $("#prgDispPic").html(Percentage + "% Complete");
+        console.log(Percentage);
+
+
+        if(Percentage >= 100)
+        {
+           console.log("Progress Completed");
+           $("#progressDispPic")[0].style.display = "none";
+           $("#prgDispPic")[0].style.width = "0%";
+           // process completed  
+        }
+    }  
+ }  
+function progress(e){
+
+    if(e.lengthComputable){
+        var max = e.total;
+        var current = e.loaded;
+
+        var Percentage = (current * 100)/max;
+        $("#prgCvrPic")[0].style.width = Percentage+"%";
+        $("#prgCvrPic").html(Percentage + "% Complete");
+        console.log(Percentage);
+
+
+        if(Percentage >= 100)
+        {
+           console.log("Progress Completed");
+           $("#progressCvrPic")[0].style.display = "none";
+           $("#prgCvrPic")[0].style.width = "0%";
+           // process completed  
+        }
+    }  
+ }   
+
+    $('#newMovieForm').parsley().on('field:validated', function() {
+    var ok = $('.parsley-error').length === 0;
+    $('.bs-callout-info').toggleClass('hidden', !ok);
+    $('.bs-callout-warning').toggleClass('hidden', ok);
+  })
+  .on('form:submit', function() {
+    return true; // Don't submit form for this demo
+  });
+    // $("#newMovieForm").submit(function(evt){
+    //     evt.preventDefault();
+    //     console.log($("#newMovieForm").serializeFormJSON());
+    //     $.ajax({
+    //         method: "POST",
+    //         url: "/admin/new-movie",
+    //         data: $("#newMovieForm").serializeFormJSON()
+    //         })
+    //         .done(function( data ) {
+    //             if ( data.success ) {
+    //                 console.log( "login data ", data );
+    //                alert(data.message);
+    //                location.href = "/"
+    //             }
+    //             else{
+    //                 console.log( "login data ", data );
+    //                 alert(data.message);
+    //             }
+    //         });
+    // });
+
+</script>

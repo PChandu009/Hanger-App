@@ -1,0 +1,50 @@
+<% movie = movies[0] %>
+<div class="row">
+    <div class="col-md-12">
+
+        <div class="evtImage" style="background:url(<%= movie.cpic %>) center center; background-size:cover; width:100%; height:200px">
+            <h1 class="center-50">
+                <!--
+                <div style="padding-top:10%">
+                        <%= movie.name %>
+               </div>
+               -->
+            </h1>
+        </div>
+
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>
+               <%= movie.name %>
+            </h1>
+            <h5> <strong>Language: </strong><%= movie.language %> </h5>
+            <h5> <strong>Venue: </strong>Hanger, Maryville, MO 64468 </h5>
+            <h5> <strong>Secreen: </strong><%= movie.shows[0].screenDetails.name %> </h5>
+            <h5> <strong>Date & Time: </strong> <%= date.format(movie.shows[0].time,"MMM DD, YYYY at hh:MM A") %></h5>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-md-1">
+            <label><strong> Number of tickets :</strong></label>
+        </div>
+        <div class="col-md-1">
+                <select class="form-control block selectpicker" >
+                    <option><a href="#">1</a></option>
+                    <option><a href="#">2</a></option>
+                    <option><a href="#">3</a></option>
+                    <option><a href="#">4</a></option>
+                    <option><a href="#">5</a></option>
+                    <option><a href="#">6</a></option>
+                    <option><a href="#">7</a></option>
+                    <option><a href="#">8</a></option>
+                    <option><a href="#">9</a></option>
+                </select>
+        </div>
+    </div>
+    <a href="/payment" class="btn btn-danger" role="button">Continue</a>
+
+</div>

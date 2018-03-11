@@ -1,0 +1,14 @@
+<% 
+  getDate = function(fullDate){
+            if (fullDate)
+                fullDate = String(fullDate);
+            if (fullDate && fullDate.length > 15)
+                return fullDate.substring(0,15)
+            else
+                return fullDate
+    }
+
+    getTime = function(fullDate){
+        return fullDate.getHours() + ":" + fullDate.getMinutes()
+    }
+%>

@@ -1,0 +1,122 @@
+<div id="editScreens" class="jumbotron bg-grey">
+<form class="form-horizontal" id="newScreenForm">
+  <fieldset>
+    <legend><i class="fa fa-edit" aria-hidden="true"></i> Manage Screens</legend>
+    <div class="jumbotron">
+    <div class="addScreenBlock">
+    <h4><i class="fa fa-plus" aria-hidden="true"></i> New Screen</h4><div class="dash-line"></div>
+      <div class="row Screenblock">
+        <div class="col-lg-3">
+          <label class="control-label"><strong>Screen Name</strong></label>
+          <input type="text" class="form-control block" placeholder="name of the screen" class="inputScreen" name="screenName" >
+        </div>
+        <div class="col-lg-3">
+          <label class="control-label"><strong>Number of Seats</strong></label>
+            <input type="number" class="form-control block" placeholder="250" value="250" class="inputScreen" name="screenSeats" >
+       </div>
+        <div class="col-lg-3">
+          <label class="control-label"><strong>Number of Seats</strong></label>
+        <p><a class="btn btn-primary btn-md" id="addScreen" href="#" role="button"><i class="fa fa-plus" aria-hidden="true"></i> Add Screen</a></p>
+       </div>
+      </div>
+      </div>
+      </div>      
+    </fieldset>
+</form>
+<div class="form-horizontal" id="editScreenForm">
+    <div class="jumbotron">
+    <div class="editScreenBlock">
+    <h4><i class="fa fa-edit" aria-hidden="true"></i> Edit Screens</h4><div class="dash-line"></div>
+      <% for(let i=0; i<screens.length; i++ ) { %>
+      <form id="<%= screens[i]._id %>" method="POST" action="/admin/update-screen/<%= screens[i]._id %>">
+      <div class="row Screenblock">
+        <div class="col-lg-3">
+          <label class="control-label"><strong>Screen Name</strong></label>
+          <input type="text" class="form-control block" placeholder="name of the screen" class="inputScreen" name="screenName" value="<%= screens[i].name %>" >
+        </div>
+        <div class="col-lg-3">
+          <label class="control-label"><strong>Number of Seats</strong></label>
+            <input type="number" class="form-control block" placeholder="250" class="inputScreen" name="screenSeats" value="<%= screens[i].seats %>" >
+       </div>
+        <div class="col-lg-3">
+          <label class="control-label"><strong>Operations</strong></label>
+        <p>
+            <a class="btn btn-primary btn-md" data-id="<%= screens[i]._id %>" id="update-<%= screens[i]._id %>"   role="button" ><i class="fa fa-edit" aria-hidden="true"></i> Update</a>
+            <a class="btn btn-danger btn-md" data-id="<%= screens[i]._id %>" id="delete-<%= screens[i]._id %>"  role="button"><i class="fa fa-close" aria-hidden="true"></i> Delete</a>
+        </p>
+       </div>
+      </div>
+      </form>
+      <% } %>
+      
+      </div>
+      </div>
+</div>
+</div>
+<script>
+$("[id^='update-']").click(function(evt){
+    evt.preventDefault();
+    $.ajax({
+    method: "POST",
+    url: "/admin/update-screen/"+evt.target.dataset.id,
+    data: $("#"+evt.target.dataset.id).serializeFormJSON()
+    })
+    .done(function( data ) {
+        if ( data.success ) {
+            console.log( data );
+            bootbox.alert(data.message);
+            
+        }
+        else{
+            console.log( data );
+            bootbox.alert(data.message);
+        }
+    });
+});
+$("[id^='delete-']").click(function(evt){
+    evt.preventDefault();
+    $.ajax({
+    method: "POST",
+    url: "/admin/delete-screen/"+evt.target.dataset.id,
+    data: $("#"+evt.target.dataset.id).serializeFormJSON()
+    })
+    .done(function( data ) {
+        if ( data.success ) {
+            console.log( data );
+            bootbox.alert(data.message);
+            $("#"+evt.target.dataset.id).remove();
+        }
+        else{
+            console.log( data );
+            bootbox.alert(data.message);
+        }
+    });
+});
+$("#addScreen").click(function(evt){
+  evt.preventDefault();  
+  var newScreenDetails = $("#newScreenForm").serializeFormJSON();
+  console.log(newScreenDetails);
+  $.ajax({
+    method: "POST",
+    url: "/admin/new-screen",
+    data: newScreenDetails
+    })
+    .done(function( data ) {
+        if ( data.success ) {
+            console.log( data );
+            bootbox.alert(data.message, function(){
+                location.href="/admin/edit-screens";
+            });
+            
+        }
+        else{
+            console.log( data );
+            if(data.data.errmsg && data.data.code==11000)
+                 bootbox.alert({title:data.message, message:"Screen name already exists" });
+            else
+                 bootbox.alert({title:data.message, message:data.data.errmsg || data.data.message });
+        }
+    });
+});
+
+</script>

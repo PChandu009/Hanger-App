@@ -1,0 +1,222 @@
+<div id="newEvent" class="jumbotron bg-grey">
+
+<form class="form-horizontal">
+  <legend><i class="fa fa-glass" aria-hidden="true"></i> New Event </legend>
+  <div class="form-group">
+    <label for="eventTitle" class="col-sm-2 control-label">Event Title</label>
+    <div class="col-sm-5">
+      <input type="text" class="form-control" id="eventTitle" name="eventTitle" placeholder="Enter title here" >
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputDesc" class="col-sm-2 control-label">Description</label>
+    <div class="col-sm-5">
+      <textarea id="inputDesc" placeholder="few words about your event" class="form-control"></textarea>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputEventDate" class="col-sm-2 control-label">Event Date</label>
+    <div class="col-sm-5">
+      <input type="date" class="form-control" id="inputEventDate"  >
+    </div>
+  </div>
+   <div class="form-group">
+      <label class="col-lg-2 control-label">Cover Picture</label>
+      <div class="col-lg-5">
+        <!-- <img src="" id="coverPic" /> -->
+        <input type="hidden" id="cvrPic" name="cvrPic" value="" />
+        <div id="coverPic"></div>
+        <div class="progress" id="progressCvrPic">
+             <div class="progress-bar" role="progressbar" id="prgCvrPic" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+    60%
+  </div>
+        </div>
+        <div method="POST" id="imageuploadform" enctype="multipart/form-data" action="/admin/upload">
+            <input type="file" id="upldCvrImageFile"  class="btn btn-warning" name="foo"><br/>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="col-lg-2 control-label">Display Picture</label>
+      <div class="col-lg-5">
+        <input type="hidden" id="dspPic" name="dspPic" value="" />
+        <div id="displayPic"></div>
+        <div class="progress" id="progressDispPic">
+             <div class="progress-bar" role="progressbar" id="prgDispPic" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+    60%
+  </div>
+        </div>
+        <div method="POST" id="imageuploadform" enctype="multipart/form-data" action="/admin/upload">
+            <input type="file" id="upldDispImageFile"  class="btn btn-warning" name="foo"><br/>
+        </div>
+      </div>
+    </div>
+  <div class="form-group">
+    <label for="inputDesc" class="col-sm-2 control-label">Publish</label>
+    <div class="col-sm-5">
+      <select class="form-control">
+        <option>Yes</option>
+        <option>No</option>
+      </select>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputDesc" class="col-sm-2 control-label">Public Event</label>
+    <div class="col-sm-5">
+      <select class="form-control">
+        <option>Yes</option>
+        <option>No</option>
+      </select>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="eventPrice" class="col-sm-2 control-label">Ticket Price</label>
+    <div class="col-sm-3">
+      <input type="number" class="form-control" id="eventPrice" name="eventPrice" placeholder="$10" >
+    </div>
+  </div>
+  
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="submit" class="btn bg-primary">Submit</button>
+    </div>
+  </div>
+</form>
+</div>
+<script>
+$("#addShow").click(function(evt){
+  evt.preventDefault();
+  $(".addShowBlock").append('<div class="row showblock"><div class="col-lg-3"><label class="control-label"><strong>Select Screen</strong></label><select id="inputMovieCertificate" class="form-control" name="showScreen"><option value="Screen1">Screen1</option><option value="Screen2">Screen2</option><option value="Screen3">Screen3</option><option value="Screen4">Screen4</option><option value="Screen5">Screen5</option><option value="Screen6">Screen6</option></select></div><div class="col-lg-3"><label class="control-label"><strong>Select Date (MM/DD/YYYY)</strong></label><input type="date" class="form-control block" placeholder="MM/DD/YYYY" class="inputMovieShowDate" name="showdate" ></div><div class="col-lg-3"><label class="control-label"><strong>Select Time (HH:MM (AM/PM))</strong></label><input type="time" class="form-control block" placeholder="HH:MM" class="inputMovieShowTime" name="showtime" ></div>');
+  // $()
+})
+
+$("#progressCvrPic")[0].style.display = "none";
+$("#progressCvrPic")[0].style.width = "200px";
+$("#progressDispPic")[0].style.display = "none";
+$("#progressDispPic")[0].style.width = "200px";
+
+$('#upldCvrImageFile').change(function (e) {
+
+    e.preventDefault();
+    var formData = new FormData();
+    formData.append('foo', $("#upldCvrImageFile")[0].files[0]);
+
+    $("#progressCvrPic")[0].style.display = "block";
+    $.ajax({
+        type:'POST',
+        url: '/admin/upload',
+        data:formData,
+        xhr: function() {
+                var myXhr = $.ajaxSettings.xhr();
+                if(myXhr.upload){
+                    myXhr.upload.addEventListener('progress',progress, false);
+                }
+                return myXhr;
+        },
+        cache:false,
+        contentType: false,
+        processData: false,
+
+        success:function(data){
+            console.log(data);
+          if(data.success){
+              $("#coverPic").css("width","300px");
+              $("#coverPic").css("height","84px");
+              $("#coverPic").css("background", "url("+data.data+") no-repeat center center");
+              $("#cvrPic").val(data.data);
+              $("#coverPic").css("background-size", "cover");
+              
+          }
+
+        },
+        error: function(data){
+            console.log(data);
+        }
+    });
+
+});
+$('#upldDispImageFile').change(function (e) {
+
+    e.preventDefault();
+    var formData = new FormData();
+    formData.append('foo', $("#upldDispImageFile")[0].files[0]);
+
+    $("#progressDispPic")[0].style.display = "block";
+    $.ajax({
+        type:'POST',
+        url: '/admin/upload',
+        data:formData,
+        xhr: function() {
+                var myXhr = $.ajaxSettings.xhr();
+                if(myXhr.upload){
+                    myXhr.upload.addEventListener('progress',progressDisp, false);
+                }
+                return myXhr;
+        },
+        cache:false,
+        contentType: false,
+        processData: false,
+
+        success:function(data){
+            console.log(data);
+          if(data.success){
+              $("#displayPic").css("width","116px");
+              $("#displayPic").css("height","174.5px");
+              $("#displayPic").css("background", "url("+data.data+") no-repeat center center");
+              $("#dspPic").val(data.data);
+              $("#displayPic").css("background-size", "cover");
+              
+          }
+
+        },
+        error: function(data){
+            console.log(data);
+        }
+    });
+
+});
+
+function progressDisp(e){
+
+    if(e.lengthComputable){
+        var max = e.total;
+        var current = e.loaded;
+
+        var Percentage = (current * 100)/max;
+        $("#prgDispPic")[0].style.width = Percentage+"%";
+        $("#prgDispPic").html(Percentage + "% Complete");
+        console.log(Percentage);
+
+
+        if(Percentage >= 100)
+        {
+           console.log("Progress Completed");
+           $("#progressDispPic")[0].style.display = "none";
+           $("#prgDispPic")[0].style.width = "0%";
+           // process completed  
+        }
+    }  
+ }  
+function progress(e){
+
+    if(e.lengthComputable){
+        var max = e.total;
+        var current = e.loaded;
+
+        var Percentage = (current * 100)/max;
+        $("#prgCvrPic")[0].style.width = Percentage+"%";
+        $("#prgCvrPic").html(Percentage + "% Complete");
+        console.log(Percentage);
+
+
+        if(Percentage >= 100)
+        {
+           console.log("Progress Completed");
+           $("#progressCvrPic")[0].style.display = "none";
+           $("#prgCvrPic")[0].style.width = "0%";
+           // process completed  
+        }
+    }  
+ }   
+</script>

@@ -1,0 +1,24 @@
+{
+  "name": "HangarMovieBooking",
+  "version": "0.0.1",
+  "description": "Hanger movie and event booking",
+  "main": "app.js",
+  "dependencies": {
+    "body-parser": "latest",
+    "date-and-time": "^0.4.0",
+    "ejs": "latest",
+    "express": "latest",
+    "express-ejs-layouts": "^2.3.0",
+    "express-fileupload": "^0.1.2",
+    "express-session": "^1.15.2",
+    "mongoose": "latest",
+    "parsleyjs": "^2.7.0"
+  },
+  "author": "HCI_1C",
+  "homepage": "",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "license": "Apache-2.0"
+}

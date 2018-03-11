@@ -1,0 +1,126 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <form class="form-horizontal" action="/payment-status" role="form">
+    <fieldset>
+      <legend><h1><i class="fa fa-money" aria-hidden="true"></i> Payment</h1><div class="dash-line"></div> <!--<label>Movie Name: Bahubali 2</label><br/> --><label># of Tickets: 6</label><br/> <label>Total Price: $320</label></legend>
+      <div class="col-md-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+            <% if(!user) {%>
+              <h3>Be as Guest User | <a href ="/login">Login</a> | <a href ="/signup">Signup</a></h3>
+            <% } else { %>
+              <h4>Ticket is booking On Following Details</h4>
+            <% } %>
+            </div>
+            <div class="panel-body">
+            <% if(user) {%>
+            <h3>Name: <input type="text" class="form-control" value="<%= user.username %>" required /></h3>
+            <h3>Email: <input type="mail" class="form-control" value="<%= user.email %>" required /></h3>
+            <h3>Phone #: <input type="tel" class="form-control" value="<%= user.phonenum %>" required /></h3>
+            <% } else { %>
+                <h3>Guest User Details</h3>
+                <form class="form-horizontal" method="post" action="#">
+						
+						<div class="form-group">
+							<label for="name" class="cols-sm-2 control-label">Your Name</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+									<input type="text" class="form-control" name="name" id="name"  placeholder="Enter your Name" required/>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="email" class="cols-sm-2 control-label">Your Email</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+									<input type="mail" class="form-control" name="email" id="email"  placeholder="Enter your Email" required/>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="phonenum" class="cols-sm-2 control-label">Phone Number</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-mobile fa" aria-hidden="true"></i></span>
+									<input type="text" class="form-control" name="phonenum" id="phonenum" min="10" max="10"  placeholder="660528..." required />
+								</div>
+							</div>
+						</div>
+                    </form>
+            <% } %>
+            </div>
+        </div>
+      </div>
+      <div class="credit-card-div col-md-6 lock-login">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <h5 class="text-muted"> Credit Card Number</h5>
+                            </div>
+                            <div class="col-md-3 col-sm-3 col-xs-3">
+                                <input type="number" class="form-control" placeholder="0000"  required />
+                            </div>
+                            <div class="col-md-3 col-sm-3 col-xs-3">
+                                <input type="number" class="form-control" placeholder="0000" required />
+                            </div>
+                            <div class="col-md-3 col-sm-3 col-xs-3">
+                                <input type="number" class="form-control" placeholder="0000" required />
+                            </div>
+                            <div class="col-md-3 col-sm-3 col-xs-3">
+                                <input type="nuber" class="form-control" placeholder="0000" required />
+                            </div>
+                        </div>
+                        <div class="row ">
+                            <div class="col-md-3 col-sm-3 col-xs-3">
+                                <span class="help-block text-muted small-font"> Expiry Month</span>
+                                <input type="number" class="form-control" placeholder="MM" required />
+                            </div>
+                            <div class="col-md-3 col-sm-3 col-xs-3">
+                                <span class="help-block text-muted small-font">  Expiry Year</span>
+                                <input type="number" class="form-control" placeholder="YY" required />
+                            </div>
+                            <div class="col-md-3 col-sm-3 col-xs-3">
+                                <span class="help-block text-muted small-font">  CCV</span>
+                                <input type="password" max="999" class="form-control" placeholder="CCV" required />
+                            </div>
+                            <div class="col-md-3 col-sm-3 col-xs-3">
+                                <img src="data:image/png;base64,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" class="img-rounded" />
+                            </div>
+                        </div>
+                        <div class="row ">
+                            <div class="col-md-12 pad-adjust">
+
+                                <input type="text" class="form-control" placeholder="Name On The Card" minlength="6" required />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 pad-adjust">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" checked class="text-muted"> Save details for fast payments. <a href="#">Learn More</a>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row ">
+                            <div class="col-md-6 col-sm-6 col-xs-6 pad-adjust">
+                                <input type="submit" class="btn btn-danger" value="CANCEL" />
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-xs-6 pad-adjust">
+                                <input type="submit" class="btn btn-warning btn-block" value="PAY NOW" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </fieldset>
+  </form>
+    </div>
+</div>

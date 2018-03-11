@@ -1,0 +1,185 @@
+<div class="row">
+    <div class="col-md-3">
+        <div class="row">
+            <div class="col-md-12">
+                    <h2><i class="fa fa-filter" aria-hidden="true"></i> Filter By</h2>
+                    <div class="dash-line"></div>
+            </div>
+            
+            <div class="col-md-12 brd-grey filter-block">
+                <h4> Languages</h4>
+                <ul class="list-unstyled">
+                    <li>
+                        <input type="checkbox" id="telugu" > <label for="telugu"> Telugu</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="Hindi" > <label for="telugu"> Hindi</label>
+                    </li>
+                     <li>
+                        <input type="checkbox" id="English" > <label for="English"> English</label>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="col-md-12 brd-grey filter-block">
+                <h4> Genre</h4>
+                <ul class="list-unstyled">
+                    <li>
+                        <input type="checkbox" id="Action" > <label for="Action"> Action</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="Adventure" > <label for="Adventure"> Adventure</label>
+                    </li>
+                     <li>
+                        <input type="checkbox" id="Biography" > <label for="Biography"> Biography</label>
+                    </li>
+                      <li>
+                        <input type="checkbox" id="Comedy" > <label for="Comedy"> Comedy</label>
+                    </li>
+                      <li>
+                        <input type="checkbox" id="Devotional" > <label for="Devotional"> Devotional</label>
+                    </li>
+                     <li>
+                        <input type="checkbox" id="Drama" > <label for="Drama"> Drama</label>
+                    </li>
+                </ul>
+            </div>
+
+            
+            
+
+        </div>
+    </div>
+    <div class="col-md-9">
+        <div class="row">
+            <div class="col-md-12">
+                
+                    <h2><i class="fa fa-film" aria-hidden="true"></i> Movies</h2>
+                    <div class="dash-line"></div>
+                
+                <div class="items">
+                   <% for(let i=0; i<movies.length; i++) { %>
+                        <div class="item thumbnail">
+                        <div style="background:url(<%= movies[i].cpic %>) center center; background-size:cover; width:318px; height:165px"></div>
+                        <!-- <img src="<%= movies[i].dpic %>" alt="<%= movies[i].desc %>" /> -->
+                        <div class="mv-desc preview row">
+                            <div class="col-md-8">
+                            <h3 class="mv-title"><%= movies[i].name %></h3>
+                            <p class="mv-lang label label-primary"><%= movies[i].language %></p><br/>
+                            <div class="mv-genre-list">
+                                <% for(let j=0; j<movies[i].genre.length; j++) { %>
+                                <label><%= movies[i].genre[j] %></label>
+                                <% } %>
+                            </div>
+                            </div>
+                            <div class="col-md-4 scnd_col">
+                            <span class="mv-price"><%= movies[i].shows[movies[i].shows.length-1].price %>$</span>
+                            </div>
+                        </div>
+                        <a class="book-button" href="/movies/select-screen/<%= movies[i]._id %>/latest">
+                            <%= movies[i].booking?"Book Now":"View Details" %>
+                        </a>
+                        </div>
+
+                        <% } %>
+                    <!--
+                    <div class="item thumbnail">
+                        <img src="images/movie_thumbnails/1.jpg" alt="book bahubali movie tickets" />
+                        <div class="mv-desc preview row">
+                            <div class="col-md-8">
+                                <h3 class="mv-title">Bahubali 2</h3>
+                                <p class="mv-lang label label-primary">Telugu</p><br/>
+                                <div class="mv-genre-list">
+                                    <label>action</label>
+                                    <label>romance</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4 scnd_col">
+                                <span class="mv-price">18$</span>
+                            </div>
+                        </div>
+                        <a class="book-button" href="#">
+            Book Now
+          </a>
+                    </div>
+                    <div class="item thumbnail">
+                        <img src="images/movie_thumbnails/2.jpg" alt="book beauty and the beast movie tickets" />
+                        <div class="mv-desc preview row">
+                            <div class="col-md-8">
+                                <h3 class="mv-title">Beauty and The beast</h3>
+                                <p class="mv-lang label label-primary">English</p><br/>
+                                <div class="mv-genre-list">
+                                    <label>drama</label>
+                                    <label>romance</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4 scnd_col">
+                                <span class="mv-price">10$</span>
+                            </div>
+                        </div>
+                        <div class="book-button">
+                            Book Now
+                        </div>
+                    </div>
+                    <div class="item thumbnail">
+                        <img src="images/movie_thumbnails/2.jpg" alt="book beauty and the beast movie tickets" />
+                        <div class="mv-desc preview row">
+                            <div class="col-md-8">
+                                <h3 class="mv-title">Beauty and The beast</h3>
+                                <p class="mv-lang label label-primary">English</p><br/>
+                                <div class="mv-genre-list">
+                                    <label>drama</label>
+                                    <label>romance</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4 scnd_col">
+                                <span class="mv-price">10$</span>
+                            </div>
+                        </div>
+                        <div class="book-button">
+                            Book Now
+                        </div>
+                    </div>
+                    <div class="item thumbnail">
+                        <img src="images/movie_thumbnails/2.jpg" alt="book beauty and the beast movie tickets" />
+                        <div class="mv-desc preview row">
+                            <div class="col-md-8">
+                                <h3 class="mv-title">Beauty and The beast</h3>
+                                <p class="mv-lang label label-primary">English</p><br/>
+                                <div class="mv-genre-list">
+                                    <label>drama</label>
+                                    <label>romance</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4 scnd_col">
+                                <span class="mv-price">10$</span>
+                            </div>
+                        </div>
+                        <div class="book-button">
+                            Book Now
+                        </div>
+                    </div>
+                    <div class="item thumbnail">
+                        <img src="images/movie_thumbnails/2.jpg" alt="book beauty and the beast movie tickets" />
+                        <div class="mv-desc preview row">
+                            <div class="col-md-8">
+                                <h3 class="mv-title">Beauty and The beast</h3>
+                                <p class="mv-lang label label-primary">English</p><br/>
+                                <div class="mv-genre-list">
+                                    <label>drama</label>
+                                    <label>romance</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4 scnd_col">
+                                <span class="mv-price">10$</span>
+                            </div>
+                        </div>
+                        <div class="book-button">
+                            Book Now
+                        </div>
+                    </div>
+                    -->
+                </div>
+            </div>
+        </div>
+    </div>

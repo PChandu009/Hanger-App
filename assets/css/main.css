@@ -1,0 +1,310 @@
+html{
+    height: 100%;
+}
+body {
+  position: relative;
+  margin: 0;
+  padding-bottom: 6rem;
+  min-height: 100%;
+  overflow-x: hidden ;
+}
+#newMovieForm input, textarea{
+    font-weight: 500;
+}
+.navbar-default {
+    background-color: #ea0000;
+    border-color: #9e0000;
+    border-radius: 0px;
+}
+.navbar-default .icon-bar{
+    background-color:#000000 !important;
+}
+
+.navbar-toggle.collapsed:hover {
+    background-color: yellow !important;
+}
+
+.navbar-default a:hover{
+    color:#ffffff !important;
+}
+.navbar-inverse {
+    border-radius: 0px !important;
+}
+.navbar-default .navbar-brand {
+    color: #ffffff;
+}
+.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:hover, .navbar-default .navbar-nav>.active>a:focus {
+    color: #ffffff;
+    background-color: transparent;
+    font-weight: bold;
+}
+.navbar-default .navbar-nav>li>a {
+    color: #ffffff;
+}
+
+/* Movie Thumbnail Items */
+.items .item {
+    position: relative;
+    width: 320px;
+    min-height: 290px;
+    float: left;
+    margin-right: 10px;
+    padding: 0px;
+    overflow: hidden;
+}
+.items .item.thumbnail img{
+    width: 320px;
+    height: 165px;
+
+}
+.mv-desc.preview {
+    margin-top:5px; 
+    padding-left: 5px;
+}
+.mv-title{
+    margin: 0px;
+    margin-bottom: 0px;
+    color: #7b0021;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: clip;
+    text-overflow: ellipsis;
+    text-overflow: "…";
+    text-overflow: fade;
+    text-overflow: fade(10px);
+    text-overflow: fade(5%);
+}
+.clear{
+    clear:both;
+}
+.dash-line {
+    width: 60px;
+    height: 1px;
+    background: #ea0000;
+    margin-bottom: 10px;
+}
+.mv-genre-list{
+    margin-top:5px;
+}
+.mv-genre-list label{
+    border: 1px solid #cdcdcd;
+    color: #a0a0a0;
+    background-color: #f1eded;
+    font-size: 10px;
+    text-transform: uppercase;
+    margin-left: 3px;
+    padding: 2px 3px 2px 3px;
+    border-radius: 6px;
+    font-weight: bold;
+}
+/* Movie Dates Header */
+.movie-dates{
+    margin-top:15px;
+    border-top: 1px solid #e6e6e6;
+}
+
+.movie-dates ul li a {
+    text-align: center;
+    background: beige;
+    margin-right: 6px;
+}
+.movie-dates ul li a:hover {
+    background: #28c11a !important;
+    color: #fff !important;
+    font-weight: 700;
+}
+.movie-dates ul li.selected a {
+    background: #28b62c;
+    color: #fff;
+    font-weight: 700;
+}
+/* Movie Dates Header */
+.scnd_col{
+    margin-top:5%;
+}
+.mv-price{
+    text-align: center;
+    font-size: 28px;
+    padding: 6%;
+    color: #922d48;
+    background-color: #f1e5cb;
+}
+.book-button{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-decoration: none;
+    text-align: center;
+    background: #ea0000;
+    color: #fff;
+    font-size: 1.3em;
+    padding: 5px;
+}
+.book-button:hover{
+    text-decoration: none;
+    color:#fff;
+}
+
+/* background colors */
+.bg-red {
+    background-color: #ea0000;
+    color: #fff;
+    border-color: #9e0000;
+}
+.btn.bg-red:hover{
+    border-color: #ea0000;
+    color: #fff;
+    background-color: #9e0000;
+}
+.btn.bg-red:active{
+    border-color: #ea0000;
+    color: #fff;
+    background-color: #9e0000;
+}
+.btn.bg-red+a:active{
+    color: yellow;
+}
+
+.bg-red h2{
+    color: #fff;
+}
+.bg-red .dash-line{
+    background-color: #f7f700;
+}
+.bg-green {
+    background-color: #008000;
+    color: #fff;
+}
+.bg-green h2{
+    color: #fff;
+}
+.bg-green .dash-line{
+    background-color: #f7f700;
+}
+.bg-yellow {
+    background-color: #f7f700;
+    color: #333333;
+}
+.bg-cyan{
+    background-color: #00b6bf;
+    color: #fff;
+}
+.bg-grey{
+    background-color: rgba(152, 152, 152, 0.37);
+    color: #000000;
+}
+#addShowsContainer{
+    color: #000000;
+}
+/*#newMovie legend{
+    color: #ffffff;
+}*/
+.center-50{
+    width:50%;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.bg-black-50{
+    background: rgba(89, 89, 89, 0.8);
+    color: #fff;
+}
+.mv-details-screenpage{
+    /*margin-top: 26%;*/
+    padding: 0px 6px;
+    /*padding-top: 0px;*/
+    max-width: 60%;
+    border: 1px solid;
+    border-radius: 6px;
+}
+.mv-details-screenpage h2{
+    color:#ffffff;
+    margin-top:6px;
+}
+.screen-timings h3{
+    margin:0px;
+}
+.screen-timings{
+    border: 1px solid #dedede;
+    border-radius: 5px;
+    padding:12px;
+    margin-bottom: 8px;
+}
+.screen-timings .timing-block span{
+    font-size: 14px;
+}
+.certificte{
+    font-size: 0.4em;
+    width:75px;
+    height: 75px;
+    border-radius: 100%;
+}
+.st{
+    border-color: 1px solid #fff;
+    background-color: #cdcdcd;
+}
+/*.st h3{
+    margin:0px;     
+}*/
+.green{
+    color:green;
+}
+.red{
+    color:#ea0000;
+}
+.green h1{
+    color:green;
+}
+ul.dropdown-menu a:hover {
+    color: #000000 !important;
+}
+/** Credicard **/
+.credit-card-div h5{
+    color:#000000;
+}
+.credit-card-div  span {
+    padding-top:10px;
+    color:#000000;
+}
+.credit-card-div img {
+    padding-top:30px;
+}
+.credit-card-div .small-font {
+    font-size:14px;
+}
+.credit-card-div .pad-adjust {
+    padding-top:10px;
+}
+/** ENd Credicard **/
+.panel-body{
+    padding: 0px 50px;
+}
+/*** Start Search CSS **/
+/*.search-form .form-group {
+  float: right !important;
+  transition: all 0.35s, border-radius 0s;
+  width: 32px;
+  height: 32px;
+  background-color: #fff;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+  border-radius: 25px;
+  border: 1px solid #ccc;
+}*/
+/*.search-form .form-group input.form-control {
+  padding-right: 20px;
+  border: 0 none;
+  background: transparent;
+  box-shadow: none;
+  display:block;
+}*/
+/** End Search CSS **/
+.footer {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 1rem;
+    background-color:#333338;
+    text-align: center;
+    color: #fff;
+}
